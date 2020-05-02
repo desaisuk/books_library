@@ -1,4 +1,4 @@
-# Movie Rating and Review website
+# Books library website
 
 Books library website created using Python and Django web framework which will allow users to check book information, allow users to add new books and update existing information about book.
 
