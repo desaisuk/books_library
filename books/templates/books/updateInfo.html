@@ -1,0 +1,44 @@
+{% extends "books/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    <div style="height: 50px;">
+    </div>
+
+    <div class="content-section"> 
+        <form type="GET">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> 
+                    <h2 class="article-content"> Search for the book by book name </h2>
+                </legend>
+            </fieldset>
+            <div class="form-group">
+                <input id="search_box" style="width: 50%; height: 40px;" type="text" name="search_box" placeholder="Search book by name...">
+            </div>
+            <div class="form-group border-bottom mb-4">
+                <button class="btn btn-outline-info" type="submit"> View Book </button>
+                <br> <br>
+            </div>
+        </form>
+    </div>
+
+    {% if no_record_flag == True %}
+        <p class="article-content alert alert-danger">  No records found. Please search for another book. </p>
+    {% endif %}
+
+    {% if books %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="article-content">
+                {{ form | crispy }}
+            </fieldset> 
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit"> Update </button>
+            </div>
+        </form>
+    {% endif %}
+
+{% endblock content %}

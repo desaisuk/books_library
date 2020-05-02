@@ -1,0 +1,56 @@
+{% extends "books/base.html" %}
+
+{% block content %}
+    <div style="height: 50px;">
+    </div>
+
+    <div class="content-section"> 
+
+        <form type="GET">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> 
+                    <h2 class="article-content"> Search for the book by book name or publish date</h2>
+                </legend>
+            </fieldset>
+            <div class="form-group  border-bottom mb-4">
+                <input id="search_box1" class="mr-4" style="width: 50%; height: 40px; float:left;" type="text" name="search_box1" placeholder="Search book by name...">
+                <button class="btn btn-outline-info" type="submit" name="book_name" style="float:inline-start;"> View Book </button>
+                <br> <br>
+            </div>
+        </form>
+
+        <form type="GET">
+            {% csrf_token %}
+            <div class="form-group  border-bottom mb-4">
+                <input id="search_box2" class="mr-4" style="width: 50%; height: 40px; float:left;" type="text" name="search_box2" placeholder="Search book by publish year...">
+                <button class="btn btn-outline-info" type="submit" name="book_publishdate" style="float:inline-start;"> View Book </button>
+                <br> <br>
+            </div>
+        </form>
+
+    </div>
+
+    <div style="height: 30px;">
+    </div>
+
+    {% if no_record_flag == True %}
+        <p class="article-content alert alert-danger">  No records found. Please search for another book. </p>
+    {% endif %}
+
+    {% for book in books %}
+        <article class="media content-section border-bottom mb-4">
+            <div class="media-body"> 
+                <h2> <a class="article-title" href="#"> {{ book.name }} </a> </h2>
+                <p class="article-content">by {{ book.author }} </p>
+                <p class="article-content"> {{ book.description }} </p>
+                <p class="article-content">Publish Year : {{ book.publish_year }} </p>
+                <p class="article-content">Issued by : {{ book.issuer_id }} </p>
+                <p class="article-content">Issued from {{ book.issue_start_date }} to {{ book.issue_end_date }}</p>
+            </div>
+        </article>
+    {% endfor %}
+
+
+
+{% endblock content %}
