@@ -28,7 +28,7 @@ pip install django-crispy-forms
 
 ## More Details
 
- - App 'movie':
+ - App 'books':
 
      - Implemented template inheritance functionality provide by Django. 
 Code in 'base.html' is inherited in all the required templates.
